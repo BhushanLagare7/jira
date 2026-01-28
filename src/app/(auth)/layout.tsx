@@ -11,12 +11,12 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const isSignIn = pathname === "/sign-in";
 
   return (
-    <main className="bg-neutral-100 min-h-screen">
-      <div className="mx-auto max-w-screen-2xl p-4">
+    <main className="min-h-screen bg-neutral-100">
+      <div className="p-4 mx-auto max-w-screen-2xl">
         <nav className="flex justify-between items-center">
           <div className="flex gap-2 items-center">
             <Image src="/logo.svg" alt="Logo" height={56} width={56} />
-            <h1 className="text-2xl font-semibold text-blue-700">Jira</h1>
+            <h1 className="text-3xl font-semibold text-blue-700">Jira</h1>
           </div>
           <Button variant="secondary" asChild>
             <Link href={isSignIn ? "/sign-up" : "/sign-in"}>
@@ -24,7 +24,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             </Link>
           </Button>
         </nav>
-        <div className="flex flex-col items-center justify-center pt-4 md:pt-14">
+        <div className="flex flex-col justify-center items-center pt-4 md:pt-14">
           {children}
         </div>
       </div>
