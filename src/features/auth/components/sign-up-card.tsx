@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,7 +30,7 @@ import { useRegister } from "../api/use-register";
 import { registerSchema } from "../schemas";
 
 export const SignUpCard = () => {
-  const { mutate } = useRegister();
+  const { mutate, isPending } = useRegister();
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -45,7 +47,7 @@ export const SignUpCard = () => {
 
   return (
     <Card className="w-full h-full md:w-[487px] border-none shadow-none">
-      <CardHeader className="flex items-center justify-center text-center p-7">
+      <CardHeader className="flex justify-center items-center p-7 text-center">
         <CardTitle className="text-2xl">Sign Up</CardTitle>
         <CardDescription>
           By signing up, you agree to our{" "}
@@ -108,7 +110,7 @@ export const SignUpCard = () => {
                 </FormItem>
               )}
             />
-            <Button className="w-full" size="lg" disabled={false}>
+            <Button className="w-full" size="lg" disabled={isPending}>
               Sign Up
             </Button>
           </form>
@@ -117,12 +119,12 @@ export const SignUpCard = () => {
       <div className="px-7">
         <DottedSeparator />
       </div>
-      <CardContent className="p-7 flex flex-col gap-y-4">
+      <CardContent className="flex flex-col gap-y-4 p-7">
         <Button
           className="w-full"
           variant="secondary"
           size="lg"
-          disabled={false}
+          disabled={isPending}
         >
           <FcGoogle className="mr-2 size-5" />
           Login with Google
@@ -131,7 +133,7 @@ export const SignUpCard = () => {
           className="w-full"
           variant="secondary"
           size="lg"
-          disabled={false}
+          disabled={isPending}
         >
           <FaGithub className="mr-2 size-5" />
           Login with Github
@@ -140,11 +142,11 @@ export const SignUpCard = () => {
       <div className="px-7">
         <DottedSeparator />
       </div>
-      <CardContent className="p-7 flex items-center justify-center">
+      <CardContent className="flex justify-center items-center p-7">
         <p>
           Already have an account?{" "}
           <Link href="/sign-in">
-            <span className="text-blue-700">Sign In</span>
+            <span className="text-blue-700">Register</span>
           </Link>
         </p>
       </CardContent>
