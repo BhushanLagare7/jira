@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,6 +31,8 @@ interface CreateWorkspaceFormProps {
 }
 
 export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
   const { mutateAsync: createWorkspace, isPending } = useCreateWorkspace();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -70,6 +72,17 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
     }
   };
 
+  useEffect(() => {
+    const imageValue = form.watch("image");
+    if (imageValue instanceof File) {
+      const url = URL.createObjectURL(imageValue);
+      setPreviewUrl(url);
+      return () => URL.revokeObjectURL(url);
+    } else {
+      setPreviewUrl(imageValue || null);
+    }
+  }, [form.watch("image")]);
+
   return (
     <Card className="w-full h-full border-none shadow-none">
       <CardHeader className="flex p-7">
@@ -106,11 +119,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                       {field.value ? (
                         <div className="size-[72px] relative rounded-md overflow-hidden">
                           <Image
-                            src={
-                              field.value instanceof File
-                                ? URL.createObjectURL(field.value)
-                                : field.value
-                            }
+                            src={previewUrl!}
                             alt="Logo"
                             className="object-cover"
                             fill
