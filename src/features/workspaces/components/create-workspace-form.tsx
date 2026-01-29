@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ImageIcon } from "lucide-react";
@@ -31,6 +32,7 @@ interface CreateWorkspaceFormProps {
 }
 
 export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
+  const router = useRouter();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const { mutateAsync: createWorkspace, isPending } = useCreateWorkspace();
@@ -53,9 +55,9 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
     createWorkspace(
       { form: finalValues },
       {
-        onSuccess: () => {
+        onSuccess: ({ data: workspace }) => {
           form.reset();
-          // TODO: Redirect to the new workspace page
+          router.push(`/workspaces/${workspace.$id}`);
         },
       },
     );
