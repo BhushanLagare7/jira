@@ -316,7 +316,7 @@ export const EditWorkspaceForm = ({
               disabled={isPending || isResettingInviteCode}
               onClick={handleResetInviteCode}
             >
-              Reset Invite Link
+              {isResettingInviteCode ? "Resetting..." : "Reset Invite Link"}
             </Button>
           </div>
         </CardContent>
@@ -339,7 +339,7 @@ export const EditWorkspaceForm = ({
               disabled={isPending || isDeletingWorkspace}
               onClick={handleDelete}
             >
-              Delete Workspace
+              {isDeletingWorkspace ? "Deleting..." : "Delete Workspace"}
             </Button>
           </div>
         </CardContent>
