@@ -87,9 +87,6 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
     }
   }, [form.watch("image")]);
 
-  // console.log(form.watch("image"));
-  console.log(previewUrl);
-
   return (
     <Card className="w-full h-full border-none shadow-none">
       <CardHeader className="flex p-7">
