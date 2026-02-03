@@ -16,7 +16,6 @@ import { useCreateProjectModal } from "@/features/projects/hooks/use-create-proj
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 export const Projects = () => {
-  const projectId = null; // TODO: Use "useProjectId" hook
   const pathname = usePathname();
   const { open } = useCreateProjectModal();
   const workspaceId = useWorkspaceId();
@@ -32,7 +31,7 @@ export const Projects = () => {
         />
       </div>
       {projects?.documents.map((project) => {
-        const href = `/workspaces/${workspaceId}/projects/${projectId}`;
+        const href = `/workspaces/${workspaceId}/projects/${project.$id}`;
         const isActive = pathname === href;
 
         return (
