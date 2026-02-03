@@ -63,8 +63,8 @@ export const CreateTaskForm = ({
     },
   });
 
-  const onSubmit = (values: FormValues) => {
-    createTask(
+  const onSubmit = async (values: FormValues) => {
+    await createTask(
       { json: values },
       {
         onSuccess: () => {

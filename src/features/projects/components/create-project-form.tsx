@@ -54,13 +54,13 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     },
   });
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     const finalValues = {
       ...values,
       image: values.image instanceof File ? values.image : "",
     };
 
-    createProject(
+    await createProject(
       { form: finalValues },
       {
         onSuccess: ({ data }) => {
