@@ -48,13 +48,13 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof createWorkspaceSchema>) => {
+  const onSubmit = async (values: z.infer<typeof createWorkspaceSchema>) => {
     const finalValues = {
       ...values,
       image: values.image instanceof File ? values.image : "",
     };
 
-    createWorkspace(
+    await createWorkspace(
       { form: finalValues },
       {
         onSuccess: ({ data: workspace }) => {
