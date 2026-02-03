@@ -2,13 +2,11 @@ import { z } from "zod";
 import { TaskStatus } from "./types";
 
 export const createTaskSchema = z.object({
-  name: z.string().trim().min(1, "Name is required"),
-  status: z.enum(TaskStatus, {
-    error: "Status is required",
-  }),
-  workspaceId: z.string().trim().min(1, "Workspace ID is required"),
-  projectId: z.string().trim().min(1, "Project ID is required"),
+  name: z.string().trim().min(1, "Task name is required"),
+  status: z.nativeEnum(TaskStatus),
+  workspaceId: z.string().min(1, "Workspace is required"),
+  projectId: z.string().min(1, "Project is required"),
   dueDate: z.coerce.date(),
-  assigneeId: z.string().trim().min(1, "Assignee ID is required"),
+  assigneeId: z.string().min(1, "Assignee is required"),
   description: z.string().optional(),
 });
