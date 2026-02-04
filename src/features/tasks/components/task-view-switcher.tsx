@@ -14,6 +14,8 @@ import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { useTaskFilters } from "../hooks/use-task-filters";
 
 import { DataFilters } from "./data-filters";
+import { DataTable } from "./data-table";
+import { columns } from "./columns";
 
 export const TaskViewSwitcher = () => {
   const workspaceId = useWorkspaceId();
@@ -64,7 +66,7 @@ export const TaskViewSwitcher = () => {
         ) : (
           <>
             <TabsContent className="mt-0" value="table">
-              {JSON.stringify(tasks, null, 2)}
+              <DataTable columns={columns} data={tasks?.documents ?? []} />
             </TabsContent>
             <TabsContent className="mt-0" value="kanban">
               {JSON.stringify(tasks, null, 2)}
