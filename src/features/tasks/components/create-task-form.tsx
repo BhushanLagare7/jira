@@ -57,7 +57,7 @@ export const CreateTaskForm = ({
     defaultValues: {
       workspaceId,
       name: "",
-      status: TaskStatus.TODO,
+      status: undefined,
       projectId: "",
       assigneeId: "",
     },
