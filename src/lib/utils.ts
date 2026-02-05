@@ -21,7 +21,7 @@ export function generateInviteCode(length: number) {
 
 export function snakeCaseToTitleCase(str: string) {
   return str
-    .toLocaleLowerCase()
+    .toLowerCase()
     .replace(/_/g, " ") // replace underscore with space
     .replace(/\b\w/g, (char) => char.toUpperCase()); // replace first letter of each word with uppercase
 }
