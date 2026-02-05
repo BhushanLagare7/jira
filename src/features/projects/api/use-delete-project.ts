@@ -1,5 +1,3 @@
-import { useRouter } from "next/navigation";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { InferRequestType, InferResponseType } from "hono";
 import { toast } from "sonner";
@@ -15,7 +13,6 @@ type RequestType = InferRequestType<
 >;
 
 export const useDeleteProject = () => {
-  const router = useRouter();
   const queryClient = useQueryClient();
 
   const mutation = useMutation<ResponseType, Error, RequestType>({
@@ -32,7 +29,7 @@ export const useDeleteProject = () => {
     },
     onSuccess: ({ data }) => {
       toast.success("Project deleted successfully");
-      router.refresh();
+
       queryClient.invalidateQueries({ queryKey: ["projects"] });
       queryClient.invalidateQueries({ queryKey: ["projects", data.$id] });
     },

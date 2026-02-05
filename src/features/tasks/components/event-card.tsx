@@ -13,6 +13,7 @@ interface EventCardProps {
   id: string;
   title: string;
   project: Project;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   assignee: any;
   status: TaskStatus;
 }
@@ -52,9 +53,9 @@ export const EventCard = ({
         )}
       >
         <p>{title}</p>
-        <div className="flex items-center gap-x-1">
+        <div className="flex gap-x-1 items-center">
           <MemberAvatar name={assignee?.name} />
-          <div className="size-1 rounded-full bg-neutral-500" />
+          <div className="rounded-full size-1 bg-neutral-500" />
           <ProjectAvatar name={project?.name} image={project?.imageUrl} />
         </div>
       </div>
