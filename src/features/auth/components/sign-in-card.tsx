@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { signUpWithGithub } from "@/lib/oauth";
+
 import { useLogin } from "../api/use-login";
 import { loginSchema } from "../schemas";
 
@@ -101,6 +103,7 @@ export const SignInCard = () => {
           variant="secondary"
           size="lg"
           disabled={isPending}
+          onClick={() => signUpWithGithub()}
         >
           <FaGithub className="mr-2 size-5" />
           Login with Github

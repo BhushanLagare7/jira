@@ -108,9 +108,11 @@ export const TaskList = ({ data, total }: TaskListProps) => {
             No Tasks Found
           </li>
         </ul>
-        <Button className="mt-4 w-full" variant="muted" asChild>
-          <Link href={`/workspaces/${workspaceId}/tasks`}>Show All</Link>
-        </Button>
+        {total > 0 && (
+          <Button className="mt-4 w-full" variant="muted" asChild>
+            <Link href={`/workspaces/${workspaceId}/tasks`}>Show All</Link>
+          </Button>
+        )}
       </div>
     </div>
   );
