@@ -49,7 +49,7 @@ const app = new Hono()
 
           return {
             ...member,
-            name: user.name,
+            name: user.name ?? user.email ?? "Unknown",
             email: user.email,
           };
         }),

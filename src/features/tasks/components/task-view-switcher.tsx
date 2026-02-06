@@ -9,6 +9,7 @@ import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { useProjectId } from "@/features/projects/hooks/use-project-id";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 import { useGetTasks } from "../api/use-get-tasks";
@@ -30,6 +31,7 @@ interface TaskViewSwitcherProps {
 export const TaskViewSwitcher = ({
   hideProjectFilter,
 }: TaskViewSwitcherProps) => {
+  const paramProjectId = useProjectId();
   const workspaceId = useWorkspaceId();
   const [{ status, assigneeId, projectId, dueDate }] = useTaskFilters();
   const [view, setView] = useQueryState("task-view", {
@@ -39,7 +41,7 @@ export const TaskViewSwitcher = ({
     workspaceId,
     status,
     assigneeId,
-    projectId,
+    projectId: paramProjectId || projectId,
     dueDate,
   });
   const { open } = useCreateTaskModal();
