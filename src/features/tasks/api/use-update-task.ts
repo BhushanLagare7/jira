@@ -31,6 +31,8 @@ export const useUpdateTask = () => {
     onSuccess: ({ data }) => {
       toast.success("Task updated successfully");
 
+      queryClient.invalidateQueries({ queryKey: ["projects-analytics"] });
+      queryClient.invalidateQueries({ queryKey: ["workspaces-analytics"] });
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       queryClient.invalidateQueries({ queryKey: ["task", data.$id] });
     },
